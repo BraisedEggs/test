@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>promise 封装AJAX</h2>
+      <button id="btn" class="btn btn-primary">点击发送AJAX请求</button>
+    </div>
+    <script>
+      const btn = document.querySelector("#btn");
+
+      // btn.addEventListener("click", () => {
+      //   sendAJAX("https://api.apiopen.top/recommendPoetry");
+      // const pro = new Promise((res, rej) => {
+      //   // 创建对象
+      //   const xhr = new XMLHttpRequest();
+      //   // 初始化
+      //   xhr.open("GET", "https://api.apiopen.top/getJoke");
+      //   // 发送
+      //   xhr.send();
+      //   // 处理响应结果
+
+      //   xhr.onreadystatechange = function () {
+      //     if (xhr.readyState === 4) {
+      //       if (xhr.status >= 200 && xhr.status < 300) {
+      //         res(xhr.status);
+      //       } else {
+      //         rej(xhr.status);
+      //       }
+      //     }
+      //   };
+      // }).then(
+      //   (res) => {
+      //     console.log("成功2222", res);
+      //   },
+      //   (rej) => {
+      //     console.log("失败1111", rej);
+      //   }
+      // );
+      // });
+      // function sendAJAX(url) {
+      //   return new Promise((res, rej) => {
+      //     // 创建对象
+      //     const xhr = new XMLHttpRequest();
+      //     // 初始化
+      //     xhr.open("get", url);
+      //     // 发送
+      //     xhr.send();
+      //     // 处理响应结果
+
+      //     xhr.onreadystatechange = function () {
+      //       if (xhr.readyState === 4) {
+      //         if (xhr.status >= 200 && xhr.status < 300) {
+      //           res(xhr.response);
+      //         } else {
+      //           rej(xhr.status);
+      //         }
+      //       }
+      //     };
+      //   }).then(
+      //     (res) => {
+      //       console.log("成功2222", res);
+      //     },
+      //     (rej) => {
+      //       console.log("失败1111", rej);
+      //     }
+      //   );
+      // }
+
+      // let p = new Promise((res, rej) => {
+      //   console.log(2222);
+      //   setTimeout(() => {
+      //     res(1111);
+      //   }, 100);
+      //   console.log(3333);
+      // }).then((res) => {
+      //   console.log(res);
+      // });
+
+      //
+      btn.addEventListener("click", () => {
+        // 1、创建对象
+        const xhr = new XMLHttpRequest();
+        // 2、初始化 设置请求方法和url
+        xhr.open("GET", "http://192.168.1.2:3333/ajax");
+        // 设置请求头
+        xhr.setRequestHeader('')
+        // 3、发送
+        xhr.send();
+        // 4、事件处理  0---未初始化 1----初始化 2-----发送 3-----返回但是不全 4-----全部返回
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            // 里面需要判断状态码来处理
+            if (xhr.status >= 200 && xhr.status < 300) {
+              console.log(xhr);
+              console.log(xhr.status); // 状态码
+              console.log(xhr.statusText); // 状态字符串
+              console.log(xhr.getAllResponseHeaders()); // 所有响应头
+              console.log(xhr.response); // 响应体
+            } else {
+              console.log(xhr);
+            }
+          }
+        };
+      });
+    </script>
+  </body>
+</html>

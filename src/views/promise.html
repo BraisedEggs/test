@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Promise</h2>
+        <button id="btn" class="btn btn-primary">点击抽奖</button>
+    </div>
+    <script>
+        function rand(M, N) {
+            return Math.ceil(Math.random() * (N - M + 1)) * M - 1;
+        }
+
+        const btn = document.getElementById('btn')
+        btn.addEventListener('click',()=>{
+            // setTimeout(()=>{
+            //    let num = rand(1,100)
+            //    if (num<10){
+            //     console.log('恭喜你抽中了10元')
+            //    }else{
+            //     console.log('很遗憾你没有抽中')
+            //    }
+            // },2000)
+            const pro = new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    let num = rand(1,100)
+                    if (num<10){
+                        res(num)
+                    }else{
+                        rej(num)
+                    }
+                },2000)
+            }).then((res)=>{
+                console.log('111',res)
+                console.log('恭喜你抽中了10元',res)
+            },(err)=>{
+                console.log('3222',err)
+
+                console.log('很遗憾你没有抽中',err)
+            })           
+        })
+    </script>
+</body>
+
+</html>
